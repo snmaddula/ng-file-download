@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FileDownloadService } from '../../service/file-download.service';
+import { saveAs } from 'file-saver';
+
+const MIME_TYPES = {
+  xls  : 'application/vnd.ms-excel',
+  xlsx : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+};
+
 
 @Component({
   selector: 'app-file-download',
@@ -7,9 +15,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileDownloadComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:FileDownloadService) { }
 
   ngOnInit() {
+  }
+  
+  downloadFile(fileName) {
+    const extension = fileName.substr(fileName.lastIndexOf('.') + 1)
+    this.service.downloadFile({'fileName': fileName})
+    .subscribe(data => {
+      saveAs(new Blob([data], { type: MIME_TYPES[extension] }), fileName);
+    })
   }
 
 }
