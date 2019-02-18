@@ -21,6 +21,7 @@ export class FileDownloadComponent implements OnInit {
   }
   
   downloadFile(fileName) {
+    console.log("fileName : " + fileName);
     const extension = fileName.substr(fileName.lastIndexOf('.') + 1)
     this.service.downloadFile({'fileName': fileName})
     .subscribe(data => {

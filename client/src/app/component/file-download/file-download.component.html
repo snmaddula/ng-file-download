@@ -1,11 +1,10 @@
-<div>
-  <h3>Choose File </h3>
-  <select #selectedFile>
-    <option value="">- select -</option>
-    <option value="alpha.xls">alpha.xls</option>
-    <option value="alpha.xlsx">alpha.xlsx</option>
-  </select>
-</div>
-<div>
-    <button (click)="downloadFile(selectedFile.value)">Download</button>
-</div>
+
+<h3>Choose File </h3>
+
+<select #selectedFile>
+  <option value="">- select -</option>
+  <option value="alpha.xls">alpha.xls</option>
+  <option value="alpha.xlsx">alpha.xlsx</option>
+</select>
+
+<button style="margin-left: 30px;" (click)="downloadFile(selectedFile.value)">Download</button>
